@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/style1.css' %}" rel="stylesheet">
+    <title>Registrate</title>
+</head>
+<body>
+  <div class="contenedor">
+    <header class="header">
+    </header>
+      <div class="contenido">
+    <img src='{% static "/img/logotransparente.png" %}' width="100px">
+        {% block content %}
+            <div class="navbar">
+                   <a href="login">Accede<a/>
+                   <a href="registrar">Registrate</a>
+                   </div>
+
+           <h2>Registro Nuevo Usuario</h2>
+            {% if form.errors %}
+            {% endif %}
+
+            <!--<ul class="messages">
+            {% if messages %}
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %} --!>
+
+        <form class="form" method="POST">
+            {% csrf_token %}
+            <table class="table">
+                {{form}}
+            </table>
+                <br>
+                <br>
+            <button type="submit" class="button">Enviar</button>
+        </form>
+      </div>
+  </div>
+         <!-- <footer class="footer">
+            <p>Este software lo ha realizado el Grupo 2 y 6 del proyecto de Python/Django (2022)</p>
+         </footer> --!>
+{% endblock content %}
+
+</body>
+</html>

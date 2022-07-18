@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<form method="POST">
+      <h1>Editar mascota</h1>
+      <table>
+        {{formaMascota}}
+      </table>
+      <button type="submit">Enviar</button>
+      {% csrf_token %}
+      <!--variable para pasar validación-->
+  </form>
+
+
+{% endblock content %}

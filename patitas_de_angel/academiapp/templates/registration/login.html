@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+        <title>Escuela de Música FIGARO</title>
+    {% load static %}
+    <link type="text/css" href="{% static 'css/style1.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="contenedor">
+    <header class="header">
+    </header>
+    <div class="contenido">
+    <img src='{% static "/img/logotransparente.png" %}' width="200px">
+    <br>
+          <!-- Manejo de mensajes ya sea de exito como de error-->
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if forms.errors %}
+          <div class="alert alert-danger">
+            <p>Tu usuario y contraseña no coinciden.</p>
+          </div>
+        {% endif %}
+        <form id="form-login" method="post">
+          {% csrf_token %}
+
+          <div class="w450" id="username">
+            Usuario {{ form.username }}
+          </div>
+            <br>
+           <div class="w450" id="password">
+            Contraseña {{ form.password }}
+          </div>
+            <br>
+          <button id="btn-registrar" class="button">Iniciar Sesión</button>
+          <div class="clearfix"></div>
+            <br>
+            <br>
+            <br>
+        </form>
+        <a href="#" class="txt_verde txt_center mt15 mb20" style="display:block">Aviso de Privacidad</a>
+        <div>
+            ¿No tienes cuenta? <button type="submit" class="button"><a href="{% url 'registrar' %}">Registrar Usuario</a></button>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

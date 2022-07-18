@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <img src='{% static "/img/logotransparente.png" %}' width="100px">
+        <br>
+        <h1>Bienvenida {{user.username}} </h1>
+
+<br>
+    <div>Nro de mascotas registradas : {{mascotas|length}}</div>
+          <br>
+    <div>
+        <button type="submit" class="button"><a href="nuevaMascota">Agregar Mascota</a></button>
+    </div>
+    <br>
+          <div>
+    <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Nombre Responsable</th>
+              <th scope="col">Email</th>
+                <th scope="col">Ver</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for mas in mascotas %}
+            <tr>
+                <td>{{mas.id}}</td>
+                <td>{{mas.nombre}}</td>
+                <td>{{mas.clienta_id.nombre_Responsable}} {{mas.clienta_id.apellido_Responsable}}</td>
+                <td>{{mas.clienta_id.email_Responsable}}</td>
+                <td><button type="submit" class="button"><a href="registration/detalleMascota/{{mas.id}}">Ver detalle</a></button></td>
+                <td><button type="submit" class="button"><a href="registration/editarMascota/{{mas.id}}">Editar</a></button></td>
+                <td><button type="submit" class="button"><a href="registration/eliminarMascota/{{mas.id}}">Eliminar</a></button></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+              <br>
+              <br>
+              <br>
+    </div>
+
+    <button type="submit" class="button"><a href='/accounts/logout'>Cerrar sesión</a></button>
+
+{% endblock content %}
